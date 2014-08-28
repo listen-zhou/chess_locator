@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %} Search {% endblock %}
+
+{% block content %}
+
+Search for chess tournaments:
+<br />
+<br />
+<br />
+
+<div class="col-md-7">
+    <form class="form-horizontal" role="form"
+    action="{% url 'locator:search' %}" method="post">
+    {% csrf_token %}
+
+    {% for field in form %}
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                     <label class="text-primary">{{ field.label }}</label>
+                </div>
+                <div class="col-md-5">
+                    {{ field|add_class:"form-control" }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <br />
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-2 col-md-offset-2"/>
+                <input class="btn btn-primary" type="submit" value="Search"
+                name="search_button">
+            </div>
+        </div>
+    </div>
+</div>
+
+</form>
+
+{% endblock %}
+

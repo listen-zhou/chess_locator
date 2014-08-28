@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %} Results {% endblock %}
+
+{% block content %}
+
+Your tournament has been added to the database:
+
+<br />
+<br />
+{{ tournament.name }}<br />
+
+{% if tournament.link %}
+    <a href="{{ tournament.link }}">
+        {{ tournament.link }}
+    </a>
+    <br />
+{% endif %}
+
+{{ tournament.address }}<br />
+{{ tournament.city }},&nbsp;{{ tournament.state }}<br />
+{{ tournament.start_date }}&nbsp;-&nbsp;{{ tournament.end_date }}
+<br /><br />
+
+<a href="{% url 'locator:add' %}">Add new chess tournaments.</a>
+
+<br />
+{% endblock %}

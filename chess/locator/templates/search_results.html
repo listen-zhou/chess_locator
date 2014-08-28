@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %} Search Results {% endblock %}
+
+{% block jscript %}
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="{% static "locator/js/map.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <div id="map-canvas"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <br />
+            Chess tournament search results:
+            {% if tournaments %}
+            <br />
+            <br />
+                {% for tournament in tournaments %}
+                    {{ tournament.name }}<br />
+
+                    {% if tournament.link %}
+                        <a href="{{ tournament.link }}">
+                            {{ tournament.link }}
+                        </a>
+                        <br />
+                    {% endif %}
+
+                    {{ tournament.address }}<br />
+                    {{ tournament.city }},&nbsp;{{ tournament.state }}<br />
+                    {{ tournament.start_date }}&nbsp;-&nbsp;
+                    {{ tournament.end_date }}
+                    <br /><br /><br />
+                {% endfor %}
+                <br />
+            {% else %}
+                <br />
+                <br />
+                <p>No chess tournaments meet your search criteria.</p>
+            {% endif %}
+             <br />
+        </div>
+
+    </div>
+    <br />
+
+    <script>
+        var locations = [
+
+        {% for latlon in latlons %}
+              [{{ latlon.0 }}, {{ latlon.1 }}, '{{ latlon.2 }}' ],
+        {% endfor %}
+        ];
+
+        var latState = {{ latlon_state.0 }};
+        var lonState = {{ latlon_state.1 }}
+
+        google.maps.event.addDomListener(window, 'load', initialize(
+            locations, latState, lonState));
+    </script>
+{% endblock %}
+
+

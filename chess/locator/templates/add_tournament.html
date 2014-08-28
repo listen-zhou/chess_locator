@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %} AddTournament {% endblock %}
+
+{% block content %}
+
+<br />
+
+<div class="col-md-7">
+    <form class="form-horizontal" role="form"
+    action="{% url 'locator:add' %}" method="post">
+    {% csrf_token %}
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label class="text-primary">Name: </label>
+                </div>
+                <div class="col-md-5">
+                    {{ form.name|add_class:"form-control" }}
+                </div>
+
+        {% if form.name.errors %}
+            <div class="col-md-5"/>
+                <div class="text-danger">
+                    {{ form.name.errors }}
+                </div>
+            </div>
+        {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label class="text-primary">Link: </label>
+                </div>
+                <div class="col-md-5">
+                    {{ form.link|add_class:"form-control" }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label class="text-primary">Address: </label>
+                </div>
+                <div class="col-md-5">
+                    {{ form.address|add_class:"form-control" }}
+                </div>
+
+        {% if form.address.errors %}
+            <div class="col-md-5"/>
+                <div class="text-danger">
+                    {{ form.address.errors }}
+                </div>
+            </div>
+        {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label class="text-primary">City: </label>
+                </div>
+                <div class="col-md-5">
+                    {{ form.city|add_class:"form-control" }}
+                </div>
+
+        {% if form.city.errors %}
+            <div class="col-md-5"/>
+                <div class="text-danger">
+                    {{ form.city.errors }}
+                </div>
+            </div>
+        {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label class="text-primary">State: </label>
+                </div>
+                <div class="col-md-5">
+                    {{ form.state|add_class:"form-control" }}
+                </div>
+
+        {% if form.state.errors %}
+            <div class="col-md-5"/>
+                <div class="text-danger">
+                    {{ form.state.errors }}
+                </div>
+            </div>
+        {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label class="text-primary">Start Date: </label>
+                </div>
+                <div class="col-md-5">
+                    {{ form.start_date|add_class:"form-control"|attr:"placeholder: YYYY-MM-DD" }}
+                </div>
+
+        {% if form.start_date.errors %}
+            <div class="col-md-5"/>
+                <div class="text-danger">
+                    {{ form.start_date.errors }}
+                </div>
+            </div>
+        {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label class="text-primary">End Date: </label>
+                </div>
+                <div class="col-md-5">
+                    {{ form.end_date|add_class:"form-control"|attr:"placeholder: YYYY-MM-DD" }}
+                </div>
+
+        {% if form.end_date.errors %}
+            <div class="col-md-5"/>
+                <div class="text-danger">
+                    {{ form.end_date.errors }}
+                </div>
+            </div>
+        {% endif %}
+            </div>
+        </div>
+
+    <br />
+    <br />
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-2 col-md-offset-2"/>
+                <input type="submit" class="btn btn-primary" name="submit_button"
+                value="Add Tournament">
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+{% endblock %}

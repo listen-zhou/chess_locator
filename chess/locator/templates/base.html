@@ -1,0 +1,60 @@
+{% load staticfiles %}
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static "locator/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "locator/css/map.css" %}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="{% static "locator/js/bootstrap.min.js" %}"></script>
+
+    {% block jscript %}{% endblock %}
+
+</head>
+
+<body>
+<div class="container">
+
+<!-- Navbar
+================================================== -->
+<section id="navbar">
+  <div class="page-header">
+    <h3><p class="text-danger">Chess Tournaments</p></h3>
+  </div>
+  <div class="navbar navbar-default">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+        data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/locator/">Locator&nbsp;&nbsp;</a>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{% url 'locator:add' %}">Add</a></li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{% url 'locator:search' %}">Search</a></li>
+      </ul>
+    </div><!-- /.nav-collapse -->
+  </div><!-- /navbar -->
+</div>
+
+<div class="container">
+  {% block content %}{% endblock %}
+</div>
+
+</body>
+
+</html>
+
